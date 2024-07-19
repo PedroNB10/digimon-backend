@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger"
 
+import { Matches } from 'class-validator';
 export class DigimonDTO  {
 
   
@@ -9,6 +10,7 @@ export class DigimonDTO  {
       description: 'Digimon Name',
       example: 'Agumon'
     })
+    @Matches(/mon$/, { message: 'Name must end with "mon"' })
     name: string
 
     @ApiProperty({
