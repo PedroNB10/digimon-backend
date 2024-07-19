@@ -5,7 +5,7 @@ import { SeedsService } from './seeds/seeds.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(3333);
+  await app.listen(process.env.APP_PORT);
 
   const data = await app.get<SeedsService>(SeedsService).seed()
   console.log(data)

@@ -1,0 +1,42 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: .env
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+      migrations:
+        condition: service_completed_successfully
+
+  migrations:
+    image: node:22.3.0-alpine
+    env_file: .env
+    restart: on-failure
+    working_dir: /migrate
+    volumes:
+      - ./prisma/:/migrate/prisma
+    command: npx prisma migrate deploy
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql:8.0.36-debian
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u ${DB_USER} --password=${DB_PASSWORD}
+      start_period: 5s
+      interval: 5s
+      timeout: 5s
+      retries: 55
+    restart: always
+    env_file: [.env]
+    volumes: [mysqldata:/var/lib/mysql]
+    ports: ["127.0.0.1:${DB_PORT}:${DB_PORT}"]
+
+volumes:
+  mysqldata:
