@@ -26,11 +26,7 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Installation
 
-```bash
-$ npm install
-```
 
 ## Runing the app on a Docker Container
 
@@ -49,7 +45,11 @@ $ docker compose up
  http://localhost:8000/api-docs # same APP_PORT in .env file
 
 ```
+## Installation
 
+```bash
+$ npm install
+```
 
 ## Running the app
 

@@ -8,7 +8,7 @@ export class DigimonDTO  {
 
     @ApiProperty({
       description: 'Digimon Name',
-      example: 'Agumon'
+      example: 'Patomon'
     })
     @Matches(/mon$/, { message: 'Name must end with "mon"' })
     name: string
@@ -21,7 +21,7 @@ export class DigimonDTO  {
 
     @ApiProperty({
       description: 'Digimon Image URL',
-      example: 'https://digimon.shadowsmith.com/img/agumon.jpg'
+      example: 'https://digimon.shadowsmith.com/img/patomon.jpg'
     })
     imgUrl: string
   }
