@@ -32,6 +32,25 @@
 $ npm install
 ```
 
+## Runing the app on a Docker Container
+
+```bash
+# Copy the .env.example file to .env
+$ cp .env.example .env
+
+# Build the image
+$ docker build 
+
+# Run the image
+$ docker compose up
+
+
+# The docs will be available at
+ http://localhost:8000/api-docs # same APP_PORT in .env file
+
+```
+
+
 ## Running the app
 
 ```bash

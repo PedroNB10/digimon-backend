@@ -7,6 +7,13 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+
+  app.enableCors({
+    origin: '*', 
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
+
   const config = new DocumentBuilder()
     .setTitle('Digimon API')
     .setDescription('Digimon API Description')
@@ -16,11 +23,11 @@ async function bootstrap() {
     
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api-docs', app, document);
+
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(process.env.APP_PORT);
 
-  const data = await app.get<SeedsService>(SeedsService).seed()
-  console.log(data)
-
+  const data = await app.get<SeedsService>(SeedsService).seed();
+  console.log(data);
 }
 bootstrap();
