@@ -54,7 +54,7 @@ export class DigimonController {
 
     return {
       statusCode: 200,
-      message: 'The digimon with the specified name.',
+      message: 'Digimon found successfully',
       data: digimon,
     };
   }
@@ -76,7 +76,7 @@ export class DigimonController {
 
     return {
       statusCode: 200,
-      message: 'The digimon with the specified level.',
+      message: 'Digimon found successfully',
       data: digimon,
     };
   }
