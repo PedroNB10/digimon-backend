@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
@@ -10,8 +11,11 @@ datasource db {
 model Digimon {
 
   id String @id @default(uuid()) @unique
-  name String
-  level String
+  name String @unique
+  level String 
   imgUrl String @unique
+  @@fulltext([name]) // FTS only for name
+  @@fulltext([level]) // FTS only for level
+  @@fulltext([name, level]) // FTS for name and level
   @@map("digimons")
 }
